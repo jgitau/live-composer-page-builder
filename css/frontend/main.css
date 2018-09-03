@@ -1117,13 +1117,67 @@ body.dslca-enabled #dslc-content .dslc-post:first-child .dslc-post-thumb .dslc-o
 	transform: translateX(0%);
 }
 
-.dslc-anim-none {
+.dslc-anim-none,
+.dslc-anim-hover-none {
 	opacity: 0;
 	-webkit-transition: all 0s ease-out !important;
 }
 
-.dslc-on-hover-anim:hover .dslc-anim-none {
+.dslc-on-hover-anim:hover .dslc-anim-none,
+.dslc-on-hover-anim:hover .dslc-anim-hover-none {
 	opacity: 1;
+}
+
+/**
+ * Animation hover with other modules
+ */
+
+.dslc-anim-hover-dslcSlideDown {
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.dslc-on-hover-anim:hover .dslc-anim-hover-dslcSlideDown {
+	-webkit-transform: translateY(100%);
+	-moz-transform: translateY(100%);
+	transform: translateY(100%);
+}
+
+.dslc-anim-hover-dslcSlideUp {
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.dslc-on-hover-anim:hover .dslc-anim-hover-dslcSlideUp {
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+
+.dslc-anim-hover-dslcSlideRight {
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	transform: translateX(0);
+}
+
+.dslc-on-hover-anim:hover .dslc-anim-hover-dslcSlideRight {
+	-webkit-transform: translateX(100%);
+	-moz-transform: translateX(100%);
+	transform: translateX(100%);
+}
+
+.dslc-anim-hover-dslcSlideLeft {
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	transform: translateX(0);
+}
+
+.dslc-on-hover-anim:hover .dslc-anim-hover-dslcSlideLeft{
+	-webkit-transform: translateX(-100%);
+	-moz-transform: translateX(-100%);
+	transform: translateX(-100%);
 }
 
 

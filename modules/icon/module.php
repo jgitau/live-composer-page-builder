@@ -459,11 +459,7 @@ class DSLC_Icon extends DSLC_Module {
 			),
 		);
 
-		$hover_opts = apply_filters( 'dslc_module_anim_hover_opts', false, $this->module_id );
-
-		$dslc_options = array_merge( $dslc_options, $this->shared_options( 'animation_options', array(
-			'hover_opts' => $hover_opts,
-		) ) );
+		$dslc_options = array_merge( $dslc_options, $this->shared_options( 'animation_options' ) );
 		$dslc_options = array_merge( $dslc_options, $this->presets_options() );
 
 		// Cache calculated array in WP Object Cache.
@@ -490,27 +486,27 @@ class DSLC_Icon extends DSLC_Module {
 
 		$classes_hover = '';
 		$data_hover = '';
+		$wrapper_hover = '';
 
 		if ( isset( $options['css_anim_hover'] ) && ( 'none' !== $options['css_anim_hover'] ) && ! $dslc_is_admin ) {
 			$classes_hover = 'dslc-on-hover-anim-target ';
-			$classes_hover .= 'dslc-anim-' . $options['css_anim_hover'];
+			$classes_hover .= 'dslc-anim-hover-' . $options['css_anim_hover'];
 
 			$data_hover = 'data-dslc-anim="' . $options['css_anim_hover'] . '"';
 			$data_hover .= 'data-dslc-anim-speed="' . $options['css_anim_speed'] . '"';
+			$wrapper_hover = 'dslc-on-hover-anim';
 		}
 
-		do_action( 'dslc_module_before_render', $options, $dslc_is_admin );
-
 		?>
-			<div class="dslc-micon-module <?php echo $classes_hover; ?>" <?php echo $data_hover; ?>>
-				<?php if ( 'svg' == $options['show_icon'] ) : ?>
-					<?php echo stripslashes( $options['inline_svg'] ); ?>
-				<?php else : ?>
-					<span class="dslc-icon dslc-icon-<?php echo $options['icon_id']; ?>"></span>	
-				<?php endif; ?>
-			</div><!-- .dslc-micon-module -->
+			<div class="dslc-wrapper-icon <?php echo $wrapper_hover; ?>">
+				<div class="dslc-micon-module <?php echo $classes_hover; ?>" <?php echo $data_hover; ?>>
+					<?php if ( 'svg' == $options['show_icon'] ) : ?>
+						<?php echo stripslashes( $options['inline_svg'] ); ?>
+					<?php else : ?>
+						<span class="dslc-icon dslc-icon-<?php echo $options['icon_id']; ?>"></span>	
+					<?php endif; ?>
+				</div><!-- .dslc-micon-module -->
+			</div>
 		<?php
-
-		do_action( 'dslc_module_after_render', $options, $dslc_is_admin );
 	}
 }

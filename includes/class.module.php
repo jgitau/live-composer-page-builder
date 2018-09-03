@@ -115,6 +115,80 @@ class DSLC_Module {
 
 		);
 
+		$animation_hover_options_posts_choices = array(
+			array(
+				'label' => 'None',
+				'value' => 'none',
+			),
+			array(
+				'label' => 'Fade In',
+				'value' => 'dslcFadeIn',
+			),
+			array(
+				'label' => 'Slide Up',
+				'value' => 'dslcSlideUp',
+			),
+			array(
+				'label' => 'Slide Down',
+				'value' => 'dslcSlideDown',
+			),
+			array(
+				'label' => 'Slide Right',
+				'value' => 'dslcSlideRight',
+			),
+			array(
+				'label' => 'Slide Left',
+				'value' => 'dslcSlideLeft',
+			),
+			array(
+				'label' => 'Slide Up + Fade In',
+				'value' => 'dslcSlideUpFadeIn',
+			),
+			array(
+				'label' => 'Slide Down + Fade In',
+				'value' => 'dslcSlideDownFadeIn',
+			),
+			array(
+				'label' => 'Slide Right + Fade In',
+				'value' => 'dslcSlideRightFadeIn',
+			),
+			array(
+				'label' => 'Slide Left + Fade In',
+				'value' => 'dslcSlideLeftFadeIn',
+			),
+		);
+
+		$animation_hover_options_other_modules_choices = array(
+			array(
+				'label' => 'None',
+				'value' => 'none',
+			),
+			array(
+				'label' => 'Slide Up',
+				'value' => 'dslcSlideUp',
+			),
+			array(
+				'label' => 'Slide Down',
+				'value' => 'dslcSlideDown',
+			),
+			array(
+				'label' => 'Slide Right',
+				'value' => 'dslcSlideRight',
+			),
+			array(
+				'label' => 'Slide Left',
+				'value' => 'dslcSlideLeft',
+			),
+		);
+
+		$animation_hover_options_other_modules_choices = apply_filters( 'dslc_animation_options', $animation_hover_options_other_modules_choices );
+
+		if ( isset( $atts['module_id'] ) && ! empty( $atts['module_id'] ) ) {
+			$animation_hover_choices = $animation_hover_options_other_modules_choices;
+		} else {
+			$animation_hover_choices = $animation_hover_options_posts_choices;
+		}
+
 		$animation_options_posts = array(
 
 			array(
@@ -124,48 +198,7 @@ class DSLC_Module {
 				'type' => 'select',
 				'section' => 'styling',
 				'tab' => 'Animation',
-				'choices' => array(
-					array(
-						'label' => 'None',
-						'value' => 'none',
-					),
-					array(
-						'label' => 'Fade In',
-						'value' => 'dslcFadeIn',
-					),
-					array(
-						'label' => 'Slide Up',
-						'value' => 'dslcSlideUp',
-					),
-					array(
-						'label' => 'Slide Down',
-						'value' => 'dslcSlideDown',
-					),
-					array(
-						'label' => 'Slide Right',
-						'value' => 'dslcSlideRight',
-					),
-					array(
-						'label' => 'Slide Left',
-						'value' => 'dslcSlideLeft',
-					),
-					array(
-						'label' => 'Slide Up + Fade In',
-						'value' => 'dslcSlideUpFadeIn',
-					),
-					array(
-						'label' => 'Slide Down + Fade In',
-						'value' => 'dslcSlideDownFadeIn',
-					),
-					array(
-						'label' => 'Slide Right + Fade In',
-						'value' => 'dslcSlideRightFadeIn',
-					),
-					array(
-						'label' => 'Slide Left + Fade In',
-						'value' => 'dslcSlideLeftFadeIn',
-					),
-				),
+				'choices' => $animation_hover_choices
 			),
 			array(
 				'label' => 'On Hover Animation - Speed ( ms )',

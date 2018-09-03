@@ -1178,11 +1178,7 @@ class DSLC_Button extends DSLC_Module {
 			),
 		);
 
-		$hover_opts = apply_filters( 'dslc_module_anim_hover_opts', false, $this->module_id );
-
-		$dslc_options = array_merge( $dslc_options, $this->shared_options( 'animation_options', array(
-			'hover_opts' => $hover_opts,
-		) ) );
+		$dslc_options = array_merge( $dslc_options, $this->shared_options( 'animation_options' ) );
 		$dslc_options = array_merge( $dslc_options, $this->presets_options() );
 
 		return apply_filters( 'dslc_module_options', $dslc_options, $this->module_id );
@@ -1216,19 +1212,19 @@ class DSLC_Button extends DSLC_Module {
 
 		$classes_hover = '';
 		$data_hover = '';
+		$wrapper_hover = '';
 
 		if ( isset( $options['css_anim_hover'] ) && ( 'none' !== $options['css_anim_hover'] ) && ! $dslc_is_admin ) {
 			$classes_hover = 'dslc-on-hover-anim-target ';
-			$classes_hover .= 'dslc-anim-' . $options['css_anim_hover'];
+			$classes_hover .= 'dslc-anim-hover-' . $options['css_anim_hover'];
 
 			$data_hover = 'data-dslc-anim="' . $options['css_anim_hover'] . '"';
 			$data_hover .= 'data-dslc-anim-speed="' . $options['css_anim_speed'] . '"';
+			$wrapper_hover = 'dslc-on-hover-anim';
 		}
 
-		do_action( 'dslc_module_before_render', $options, $dslc_active );
-
 		?>
-
+			<div class="dslc-wrapper-button <?php echo $wrapper_hover; ?>">
 			<div class="dslc-button <?php echo $classes_hover; ?>" <?php echo $data_hover; ?>>
 				<?php if ( $options['button_target'] == 'lightbox' ) : ?>
 					<a href="<?php echo $options['button_url']; ?>" <?php echo $anchor_append;
@@ -1278,8 +1274,7 @@ class DSLC_Button extends DSLC_Module {
 					</a>
 				<?php endif; ?>
 			</div><!-- .dslc-button -->
-
-			<?php do_action( 'dslc_module_after_render', $options, $dslc_active ); ?>
+			</div>
 
 			<?php if ( $dslc_is_admin ) :
 				/* We output this button code for clean html export only */ ?>
